@@ -9,16 +9,16 @@ pipeline {
     stage('docker build and push') {
       steps {
         sh '''
-        docker build -t kystic125/cicdtest:green .
-        docker push kystic125/cicdtest:green
+        sudo docker build -t kystic125/cicdtest:green .
+        sudo docker push kystic125/cicdtest:green
         '''
       }
     }
     stage('deploy kubernetes') {
       steps {
         sh '''
-        kubectl create deploy pl-bulk-prod --image=kystic125/cicdtest:green
-        kubectl expose deployment pl-bulk-prod --type=LoadBalancer --port=80 --target-port=80 --name-pl-bulk-prod-
+        sudo kubectl create deploy pl-bulk-prod --image=kystic125/cicdtest:green
+        sudo kubectl expose deployment pl-bulk-prod --type=LoadBalancer --port=80 --target-port=80 --name-pl-bulk-prod-
         '''
       }
     }
