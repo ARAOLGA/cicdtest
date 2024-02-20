@@ -17,8 +17,8 @@ pipeline {
     stage('deploy kubernetes') {
       steps {
         sh '''
-        sudo ansible master -m shell -a kubectl create deploy pl-bulk-prod --image=kystic125/cicdtest:green
-        sudo ansible master -m shell -a kubectl expose deployment pl-bulk-prod --type=LoadBalancer --port=80 --target-port=80 --name-pl-bulk-prod-
+        sudo ansible master -m shell -a 'kubectl create deploy pl-bulk-prod --image=kystic125/cicdtest:green'
+        sudo ansible master -m shell -a 'kubectl expose deployment pl-bulk-prod --type=LoadBalancer --port=80 --target-port=80 --name-pl-bulk-prod-'
         '''
       }
     }
